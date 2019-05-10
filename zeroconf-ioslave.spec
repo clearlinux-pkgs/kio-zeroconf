@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xDBD2CE893E2D1C87 (cfeck@kde.org)
 #
 Name     : zeroconf-ioslave
-Version  : 19.04.0
-Release  : 6
-URL      : https://download.kde.org/stable/applications/19.04.0/src/zeroconf-ioslave-19.04.0.tar.xz
-Source0  : https://download.kde.org/stable/applications/19.04.0/src/zeroconf-ioslave-19.04.0.tar.xz
-Source99 : https://download.kde.org/stable/applications/19.04.0/src/zeroconf-ioslave-19.04.0.tar.xz.sig
+Version  : 19.04.1
+Release  : 7
+URL      : https://download.kde.org/stable/applications/19.04.1/src/zeroconf-ioslave-19.04.1.tar.xz
+Source0  : https://download.kde.org/stable/applications/19.04.1/src/zeroconf-ioslave-19.04.1.tar.xz
+Source99 : https://download.kde.org/stable/applications/19.04.1/src/zeroconf-ioslave-19.04.1.tar.xz.sig
 Summary  : Network Monitor for DNS-SD services (Zeroconf)
 Group    : Development/Tools
 License  : GFDL-1.2 GPL-2.0 LGPL-2.1
@@ -60,14 +60,14 @@ locales components for the zeroconf-ioslave package.
 
 
 %prep
-%setup -q -n zeroconf-ioslave-19.04.0
+%setup -q -n zeroconf-ioslave-19.04.1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1557050544
+export SOURCE_DATE_EPOCH=1557468461
 mkdir -p clr-build
 pushd clr-build
 export AR=gcc-ar
@@ -82,7 +82,7 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1557050544
+export SOURCE_DATE_EPOCH=1557468461
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/zeroconf-ioslave
 cp COPYING %{buildroot}/usr/share/package-licenses/zeroconf-ioslave/COPYING
