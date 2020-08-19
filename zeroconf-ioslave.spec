@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xDBD2CE893E2D1C87 (cfeck@kde.org)
 #
 Name     : zeroconf-ioslave
-Version  : 20.04.2
-Release  : 20
-URL      : https://download.kde.org/stable/release-service/20.04.2/src/zeroconf-ioslave-20.04.2.tar.xz
-Source0  : https://download.kde.org/stable/release-service/20.04.2/src/zeroconf-ioslave-20.04.2.tar.xz
-Source1  : https://download.kde.org/stable/release-service/20.04.2/src/zeroconf-ioslave-20.04.2.tar.xz.sig
+Version  : 20.08.0
+Release  : 21
+URL      : https://download.kde.org/stable/release-service/20.08.0/src/zeroconf-ioslave-20.08.0.tar.xz
+Source0  : https://download.kde.org/stable/release-service/20.08.0/src/zeroconf-ioslave-20.08.0.tar.xz
+Source1  : https://download.kde.org/stable/release-service/20.08.0/src/zeroconf-ioslave-20.08.0.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GFDL-1.2 GPL-2.0 LGPL-2.1
@@ -61,15 +61,15 @@ locales components for the zeroconf-ioslave package.
 
 
 %prep
-%setup -q -n zeroconf-ioslave-20.04.2
-cd %{_builddir}/zeroconf-ioslave-20.04.2
+%setup -q -n zeroconf-ioslave-20.08.0
+cd %{_builddir}/zeroconf-ioslave-20.08.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1591885217
+export SOURCE_DATE_EPOCH=1597801698
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -81,16 +81,16 @@ export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
 export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
 export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 %cmake ..
-make  %{?_smp_mflags}  VERBOSE=1
+make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1591885217
+export SOURCE_DATE_EPOCH=1597801698
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/zeroconf-ioslave
-cp %{_builddir}/zeroconf-ioslave-20.04.2/COPYING %{buildroot}/usr/share/package-licenses/zeroconf-ioslave/3860f7708aae6a8ddfe8483263b2a5f29b83c975
-cp %{_builddir}/zeroconf-ioslave-20.04.2/COPYING.DOC %{buildroot}/usr/share/package-licenses/zeroconf-ioslave/bd75d59f9d7d9731bfabdc48ecd19e704d218e38
-cp %{_builddir}/zeroconf-ioslave-20.04.2/COPYING.LIB %{buildroot}/usr/share/package-licenses/zeroconf-ioslave/9a1929f4700d2407c70b507b3b2aaf6226a9543c
+cp %{_builddir}/zeroconf-ioslave-20.08.0/COPYING %{buildroot}/usr/share/package-licenses/zeroconf-ioslave/3860f7708aae6a8ddfe8483263b2a5f29b83c975
+cp %{_builddir}/zeroconf-ioslave-20.08.0/COPYING.DOC %{buildroot}/usr/share/package-licenses/zeroconf-ioslave/bd75d59f9d7d9731bfabdc48ecd19e704d218e38
+cp %{_builddir}/zeroconf-ioslave-20.08.0/COPYING.LIB %{buildroot}/usr/share/package-licenses/zeroconf-ioslave/9a1929f4700d2407c70b507b3b2aaf6226a9543c
 pushd clr-build
 %make_install
 popd
