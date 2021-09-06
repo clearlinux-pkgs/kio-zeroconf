@@ -5,14 +5,14 @@
 # Source0 file verified with key 0xBB463350D6EF31EF (heiko@shruuf.de)
 #
 Name     : zeroconf-ioslave
-Version  : 21.04.2
-Release  : 28
-URL      : https://download.kde.org/stable/release-service/21.04.2/src/zeroconf-ioslave-21.04.2.tar.xz
-Source0  : https://download.kde.org/stable/release-service/21.04.2/src/zeroconf-ioslave-21.04.2.tar.xz
-Source1  : https://download.kde.org/stable/release-service/21.04.2/src/zeroconf-ioslave-21.04.2.tar.xz.sig
+Version  : 21.08.1
+Release  : 29
+URL      : https://download.kde.org/stable/release-service/21.08.1/src/zeroconf-ioslave-21.08.1.tar.xz
+Source0  : https://download.kde.org/stable/release-service/21.08.1/src/zeroconf-ioslave-21.08.1.tar.xz
+Source1  : https://download.kde.org/stable/release-service/21.08.1/src/zeroconf-ioslave-21.08.1.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
-License  : GFDL-1.2 GPL-2.0 LGPL-2.1
+License  : GPL-2.0 LGPL-2.0
 Requires: zeroconf-ioslave-data = %{version}-%{release}
 Requires: zeroconf-ioslave-lib = %{version}-%{release}
 Requires: zeroconf-ioslave-license = %{version}-%{release}
@@ -61,36 +61,35 @@ locales components for the zeroconf-ioslave package.
 
 
 %prep
-%setup -q -n zeroconf-ioslave-21.04.2
-cd %{_builddir}/zeroconf-ioslave-21.04.2
+%setup -q -n zeroconf-ioslave-21.08.1
+cd %{_builddir}/zeroconf-ioslave-21.08.1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1623437418
+export SOURCE_DATE_EPOCH=1630959447
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
-export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
+export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=auto "
+export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=auto "
+export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=auto "
+export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=auto "
 %cmake ..
 make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1623437418
+export SOURCE_DATE_EPOCH=1630959447
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/zeroconf-ioslave
-cp %{_builddir}/zeroconf-ioslave-21.04.2/COPYING %{buildroot}/usr/share/package-licenses/zeroconf-ioslave/3860f7708aae6a8ddfe8483263b2a5f29b83c975
-cp %{_builddir}/zeroconf-ioslave-21.04.2/COPYING.DOC %{buildroot}/usr/share/package-licenses/zeroconf-ioslave/bd75d59f9d7d9731bfabdc48ecd19e704d218e38
-cp %{_builddir}/zeroconf-ioslave-21.04.2/COPYING.LIB %{buildroot}/usr/share/package-licenses/zeroconf-ioslave/9a1929f4700d2407c70b507b3b2aaf6226a9543c
+cp %{_builddir}/zeroconf-ioslave-21.08.1/LICENSES/GPL-2.0-or-later.txt %{buildroot}/usr/share/package-licenses/zeroconf-ioslave/3e8971c6c5f16674958913a94a36b1ea7a00ac46
+cp %{_builddir}/zeroconf-ioslave-21.08.1/LICENSES/LGPL-2.0-only.txt %{buildroot}/usr/share/package-licenses/zeroconf-ioslave/a4c60b3fefda228cd7439d3565df043192fef137
 pushd clr-build
 %make_install
 popd
@@ -102,20 +101,18 @@ popd
 %files data
 %defattr(-,root,root,-)
 /usr/share/dbus-1/interfaces/org.kde.kdnssd.xml
-/usr/share/kservices5/kded/dnssdwatcher.desktop
 /usr/share/metainfo/org.kde.zeroconf-ioslave.metainfo.xml
 /usr/share/remoteview/zeroconf.desktop
 
 %files lib
 %defattr(-,root,root,-)
-/usr/lib64/qt5/plugins/kded_dnssdwatcher.so
+/usr/lib64/qt5/plugins/kf5/kded/dnssdwatcher.so
 /usr/lib64/qt5/plugins/kf5/kio/zeroconf.so
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/zeroconf-ioslave/3860f7708aae6a8ddfe8483263b2a5f29b83c975
-/usr/share/package-licenses/zeroconf-ioslave/9a1929f4700d2407c70b507b3b2aaf6226a9543c
-/usr/share/package-licenses/zeroconf-ioslave/bd75d59f9d7d9731bfabdc48ecd19e704d218e38
+/usr/share/package-licenses/zeroconf-ioslave/3e8971c6c5f16674958913a94a36b1ea7a00ac46
+/usr/share/package-licenses/zeroconf-ioslave/a4c60b3fefda228cd7439d3565df043192fef137
 
 %files locales -f kio5_zeroconf.lang
 %defattr(-,root,root,-)
