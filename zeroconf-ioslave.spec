@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xBB463350D6EF31EF (heiko@shruuf.de)
 #
 Name     : zeroconf-ioslave
-Version  : 21.12.3
-Release  : 36
-URL      : https://download.kde.org/stable/release-service/21.12.3/src/zeroconf-ioslave-21.12.3.tar.xz
-Source0  : https://download.kde.org/stable/release-service/21.12.3/src/zeroconf-ioslave-21.12.3.tar.xz
-Source1  : https://download.kde.org/stable/release-service/21.12.3/src/zeroconf-ioslave-21.12.3.tar.xz.sig
+Version  : 22.04.0
+Release  : 37
+URL      : https://download.kde.org/stable/release-service/22.04.0/src/zeroconf-ioslave-22.04.0.tar.xz
+Source0  : https://download.kde.org/stable/release-service/22.04.0/src/zeroconf-ioslave-22.04.0.tar.xz
+Source1  : https://download.kde.org/stable/release-service/22.04.0/src/zeroconf-ioslave-22.04.0.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GPL-2.0 LGPL-2.0
@@ -61,15 +61,15 @@ locales components for the zeroconf-ioslave package.
 
 
 %prep
-%setup -q -n zeroconf-ioslave-21.12.3
-cd %{_builddir}/zeroconf-ioslave-21.12.3
+%setup -q -n zeroconf-ioslave-22.04.0
+cd %{_builddir}/zeroconf-ioslave-22.04.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1646515444
+export SOURCE_DATE_EPOCH=1650652909
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -85,11 +85,11 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1646515444
+export SOURCE_DATE_EPOCH=1650652909
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/zeroconf-ioslave
-cp %{_builddir}/zeroconf-ioslave-21.12.3/LICENSES/GPL-2.0-or-later.txt %{buildroot}/usr/share/package-licenses/zeroconf-ioslave/3e8971c6c5f16674958913a94a36b1ea7a00ac46
-cp %{_builddir}/zeroconf-ioslave-21.12.3/LICENSES/LGPL-2.0-only.txt %{buildroot}/usr/share/package-licenses/zeroconf-ioslave/a4c60b3fefda228cd7439d3565df043192fef137
+cp %{_builddir}/zeroconf-ioslave-22.04.0/LICENSES/GPL-2.0-or-later.txt %{buildroot}/usr/share/package-licenses/zeroconf-ioslave/3e8971c6c5f16674958913a94a36b1ea7a00ac46
+cp %{_builddir}/zeroconf-ioslave-22.04.0/LICENSES/LGPL-2.0-only.txt %{buildroot}/usr/share/package-licenses/zeroconf-ioslave/a4c60b3fefda228cd7439d3565df043192fef137
 pushd clr-build
 %make_install
 popd
