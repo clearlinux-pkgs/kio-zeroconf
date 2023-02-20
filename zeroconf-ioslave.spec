@@ -6,7 +6,7 @@
 #
 Name     : zeroconf-ioslave
 Version  : 22.04.3
-Release  : 40
+Release  : 41
 URL      : https://download.kde.org/stable/release-service/22.04.3/src/zeroconf-ioslave-22.04.3.tar.xz
 Source0  : https://download.kde.org/stable/release-service/22.04.3/src/zeroconf-ioslave-22.04.3.tar.xz
 Source1  : https://download.kde.org/stable/release-service/22.04.3/src/zeroconf-ioslave-22.04.3.tar.xz.sig
@@ -22,6 +22,9 @@ BuildRequires : buildreq-kde
 BuildRequires : extra-cmake-modules-data
 BuildRequires : kdnssd-dev
 BuildRequires : qtbase-dev mesa-dev
+# Suppress stripping binaries
+%define __strip /bin/true
+%define debug_package %{nil}
 
 %description
 No detailed description available
@@ -69,27 +72,27 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1657552363
+export SOURCE_DATE_EPOCH=1676873090
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=auto "
-export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=auto "
-export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=auto "
-export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=auto "
+export CFLAGS="$CFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
+export FCFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
+export FFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
+export CXXFLAGS="$CXXFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
 %cmake ..
 make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1657552363
+export SOURCE_DATE_EPOCH=1676873090
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/zeroconf-ioslave
-cp %{_builddir}/zeroconf-ioslave-22.04.3/LICENSES/GPL-2.0-or-later.txt %{buildroot}/usr/share/package-licenses/zeroconf-ioslave/3e8971c6c5f16674958913a94a36b1ea7a00ac46
-cp %{_builddir}/zeroconf-ioslave-22.04.3/LICENSES/LGPL-2.0-only.txt %{buildroot}/usr/share/package-licenses/zeroconf-ioslave/a4c60b3fefda228cd7439d3565df043192fef137
+cp %{_builddir}/zeroconf-ioslave-%{version}/LICENSES/GPL-2.0-or-later.txt %{buildroot}/usr/share/package-licenses/zeroconf-ioslave/3e8971c6c5f16674958913a94a36b1ea7a00ac46 || :
+cp %{_builddir}/zeroconf-ioslave-%{version}/LICENSES/LGPL-2.0-only.txt %{buildroot}/usr/share/package-licenses/zeroconf-ioslave/a4c60b3fefda228cd7439d3565df043192fef137 || :
 pushd clr-build
 %make_install
 popd
