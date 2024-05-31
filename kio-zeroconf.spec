@@ -9,7 +9,7 @@
 #
 Name     : kio-zeroconf
 Version  : 24.05.0
-Release  : 46
+Release  : 47
 URL      : https://download.kde.org/stable/release-service/24.05.0/src/kio-zeroconf-24.05.0.tar.xz
 Source0  : https://download.kde.org/stable/release-service/24.05.0/src/kio-zeroconf-24.05.0.tar.xz
 Source1  : https://download.kde.org/stable/release-service/24.05.0/src/kio-zeroconf-24.05.0.tar.xz.sig
